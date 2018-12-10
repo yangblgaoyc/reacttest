@@ -2,7 +2,8 @@ const webpack = require('webpack');
 const path = require("path");
 const fs=require('fs');
 const vendors = [
-    'react' //这里添加第三方库文件
+    'react', //这里添加第三方库文件
+    'react-dom'
 ];
 
 module.exports = {
