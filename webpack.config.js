@@ -37,7 +37,7 @@ module.exports = {
             filename: 'index.html',
             template : 'src/index.html'
         }),
-        new cleanWebpackPlugin(['build']),
+        // new cleanWebpackPlugin(['build']),
         new ExtractTextPlugin("styles.css"),   //插件声明
         require('autoprefixer'),
         // new webpack.optimize.UglifyJsPlugin(
