@@ -8,7 +8,10 @@ const presets = [
         },
         useBuiltIns: "usage"
     }],
-    ["@babel/preset-react"]
+    ["@babel/preset-react","@babel/preset-stage-0"]
 ];
+// const presets = [
+//     ["@babel/env","@babel/preset-react","@babel/preset-stage-0"]
+// ];
 
 module.exports = { presets };
