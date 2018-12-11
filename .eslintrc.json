@@ -43,7 +43,11 @@
         "node": true
     },
 //    "extends": "eslint:recommended",// 启用 eslint 的默认推荐规
-    "extends": "plugin:react/recommended",
+    "extends": [
+        "eslint:recommended",
+        "plugin:react/recommended"
+    ],
+    "parser": "babel-eslint",
     "parserOptions": {
         "ecmaVersion": 2018,//ECMAScript syntax 最新版本
         "ecmaFeatures": {
@@ -57,6 +61,8 @@
         "react"
     ],
     "rules": {
+        "react/jsx-uses-react": "error",
+        "react/jsx-uses-vars": "error",
         "semi": [
             "error",
             "always"

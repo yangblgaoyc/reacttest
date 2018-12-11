@@ -49,7 +49,7 @@ module.exports = {
         //         }
         //     }),
         new HappyPack({
-            id:"happybabel",
+            id:"happyBabel",
             loaders:['babel-loader'],
             threadPool:happypackThreadPool,
             cache:true,
@@ -68,7 +68,16 @@ module.exports = {
                 // exclude:/(node_modules|bower_components)/,//排除XXX类型文件
                 enforce:'pre',
                 loader:'eslint-loader',
-                include:path.resolve(__dirname,'src')
+                include:path.resolve(__dirname,'src'),
+                options: { // 这里的配置项参数将会被传递到 eslint 的 CLIEngine
+                    formatter: require('eslint-friendly-formatter') // 指定错误报告的格式规范
+                }
+            },
+            {
+                test:/\.(js|jsx)$/,
+                include:path.resolve(__dirname),
+                loader:'happypack/loader?id=happyBabel'
+
             },
             {
                 test:/\.css$/,
