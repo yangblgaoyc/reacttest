@@ -1,6 +1,6 @@
 require('./css/css.css');
 // import './css/css.css'
-import './js/test.js';
+import './js/test.jsx';
 
 const app=document.createElement("div");
 app.innerHTML='<h1>Hello World!</h1>';
