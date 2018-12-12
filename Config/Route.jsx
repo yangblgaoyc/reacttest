@@ -1,9 +1,11 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
-import {NavLink,Route,BrowserRouter as Router,HashRouter,Switch,Redirect}  from 'react-router-dom';
+import {Route,Switch,hashHistory}  from 'react-router-dom';
+// import {NavLink,Route,BrowserRouter as Router,HashRouter,Switch,Redirect}  from 'react-router-dom';
 
 import MainComponent from '../component/Main.jsx';//引进组件
 import Topic from '../component/Topic.jsx';//引进组件
+
+var data = {id:3,name:'sam',age:36};
 const routes =[
     {
         path:'/',
@@ -12,7 +14,7 @@ const routes =[
     },
     {
         path:'/topic',
-        exact:false,
+        exact:true,
         component:Topic
     },
 ];
@@ -33,3 +35,4 @@ const RouteConfig = (
 );
 
 export default RouteConfig;
+

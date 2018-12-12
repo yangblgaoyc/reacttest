@@ -1,11 +1,15 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
 import {NavLink as Link} from 'react-router-dom';
+// import {NavLink,Route,BrowserRouter as Router,HashRouter,Switch,Redirect}  from 'react-router-dom';
 class MainComponent extends React.Component{
+    constructor(props){
+        super(props);
+        console.log(this.props)
+    }
     render(){
         return(
             <div>
-                <h1>mainText</h1>
+                <h1>mainText1</h1>
 
                 <Link to="/topic">jumpe to Topic</Link>
             </div>

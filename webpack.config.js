@@ -1,8 +1,9 @@
 const webpack = require('webpack');
 const path = require('path');
 const HtmlwebpackPlugin = require('html-webpack-plugin');
-const cleanWebpackPlugin = require('clean-webpack-plugin');
-const ExtractTextPlugin = require('extract-text-webpack-plugin');
+// const cleanWebpackPlugin = require('clean-webpack-plugin');
+const MiniCssExtractPlugin = require("mini-css-extract-plugin");
+// const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const os = require('os');//os.cpus().Length 一般会取不到值，这里直接size:4,而不是size:os.cpus().length
 const HappyPack = require('happypack');
 // const happypackThreadPool = Happypack.ThreadPool({size:4});//size:os.cpus().Lengt根据电脑的idle，配置当前最大的线程数量
@@ -21,8 +22,8 @@ module.exports = {
     */
     output: {
         filename:'bundle.js',//js合并后的输出的文件，命名为bundle.js
-        path:path.resolve(__dirname,'build'),//指令的意思是：把合并的js文件，放到根目录build文件夹下面
-        //publicPath:'',生成文件的公共路径，‘/work/reactweb/dist’ 生产环境下所有的文件路径将会添加这个公共路径
+        path:path.resolve(__dirname,'build/'),//指令的意思是：把合并的js文件，放到根目录build文件夹下面
+        // publicPath:'/',//生成文件的公共路径，‘/work/reactweb/dist’ 生产环境下所有的文件路径将会添加这个公共路径
     },
 //多个入口的输出文件格式
     /*
@@ -38,7 +39,10 @@ module.exports = {
             template : 'src/index.html'
         }),
         // new cleanWebpackPlugin(['build']),
-        new ExtractTextPlugin("styles.css"),   //插件声明
+        // new ExtractTextPlugin("styles.css"),   //插件声明
+        new MiniCssExtractPlugin({
+            filename: 'css/styles.css',
+        }),
         require('autoprefixer'),
         // new webpack.optimize.UglifyJsPlugin(
         //     {output: {
@@ -81,21 +85,36 @@ module.exports = {
             },
             {
                 test:/\.css$/,
-                use:ExtractTextPlugin.extract({    //使用ExtractTextPlugin 插件
-                    fallback:"style-loader",
-                    use:["css-loader","postcss-loader"]
-                }),
+                // use:ExtractTextPlugin.extract({    //使用ExtractTextPlugin 插件
+                //     fallback:"style-loader",
+                //     use:["css-loader","postcss-loader"]
+                // }),
+                use: [
+                    MiniCssExtractPlugin.loader,
+                    'css-loader',
+                    'postcss-loader',
+                    'sass-loader',
+                ],
 
             },
             {   //配置辅助loader
                 test:/\.(png|jpg|jpeg|gif|svg|eot|ttf|woff|woff2)$/,
                 loader:'url-loader',
-                options:{limit:8192,name:"images/[name].[ext]"}
+                options:{
+                    limit:8192,
+                    name:"images/[name].[ext]",
+                    publicPath : '../'
+                }
             },
             { //处理图片外的其他文件类型
                 test:/\.(appcache|svg|eot|ttf|woff|woff2|mp3|pdf)(\?|$)/,
                 include:path.resolve(__dirname,'src'),
-                loader:'file-loader?name=[name].[ext]'
+                loader:'file-loader',
+                options:{
+                    limit:8192,
+                    name:"images/[name].[ext]",
+                    publicPath : '../'
+                }
             }
         ]
     },

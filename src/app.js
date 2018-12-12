@@ -1,9 +1,23 @@
 require('./css/css.css');
-// import './css/css.css'
-import './js/test.jsx';
+import React from 'react';
+import ReactDOM from 'react-dom';
+import {HashRouter as Router} from 'react-router-dom';
+import RouteConfig from '../Config/Route.jsx';
 
-const app=document.createElement("div");
-app.innerHTML='<h1>Hello World!</h1>';
-document.body.insertBefore(app,document.body.childNodes[0]);
+const element  = <h1>Hello, world</h1>;
+
+ReactDOM.render(
+    element,
+    document.getElementById('root')
+);
+
+ReactDOM.render(
+    <Router>
+        {RouteConfig}
+    </Router>
+    ,document.getElementById('root')
+);
+
+
 
 
