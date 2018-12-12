@@ -10,12 +10,14 @@ const routes =[
     {
         path:'/',
         exact:true,
-        component: MainComponent
+        // component: MainComponent
+        render:()=>(<MainComponent data={data}/>)
     },
     {
         path:'/topic',
         exact:true,
-        component:Topic
+        // component:Topic
+        render:()=>(<Topic data={data}/>)
     },
 ];
 const RouteConfig = (
@@ -26,7 +28,7 @@ const RouteConfig = (
                     key ={index}
                     path={route.path}
                     exact={route.exact}
-                    component={route.component}
+                    render={route.render}
                 />
             ))
         }

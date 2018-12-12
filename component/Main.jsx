@@ -4,14 +4,13 @@ import {NavLink as Link} from 'react-router-dom';
 class MainComponent extends React.Component{
     constructor(props){
         super(props);
-        console.log(this.props)
     }
     render(){
         return(
             <div>
                 <h1>mainText1</h1>
 
-                <Link to="/topic">jumpe to Topic</Link>
+                <Link to="/topic">jumpe to Topi {this.props.data.name}</Link>
             </div>
         );
     }
