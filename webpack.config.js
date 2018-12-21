@@ -11,7 +11,7 @@ const happypackThreadPool = HappyPack.ThreadPool({ size: os.cpus().length });
 
 module.exports = {
 
-    entry:'./src/app.js', //入口文件配置为app.js文件。若入口文件为index.js,这里可以直接写成'./src'
+    // entry:'./src/app.js', //入口文件配置为app.js文件。若入口文件为index.js,这里可以直接写成'./src'
 //入口文件很多的话，可以写成下面的格式：
     /*
     entry:{
@@ -20,6 +20,16 @@ module.exports = {
         pageThree: './src/pageThree/index.js'
     }
     */
+
+    entry: {
+        app:[
+            'webpack-dev-server/client?http://localhost:8080',  // 热更新监听此地址
+            'webpack/hot/dev-server',  // 启用热更新
+            './src/app.js',
+            path.resolve(__dirname, 'src', 'app')
+        ]
+    },
+
     output: {
         filename:'bundle.js',//js合并后的输出的文件，命名为bundle.js
         path:path.resolve(__dirname,'build/'),//指令的意思是：把合并的js文件，放到根目录build文件夹下面
@@ -63,6 +73,7 @@ module.exports = {
             context: __dirname,
             manifest: require('./build/manifest.json'),
         }),
+        new webpack.HotModuleReplacementPlugin()
     ],
 
     module:{
@@ -133,7 +144,7 @@ module.exports = {
         //headers:{"X-Custom-Foo":"bar"},
         open :true,
         hot:true,//是否启用热更新
-        port:9200,
+        port:8080,
         historyApiFallback:true,//html5接口,设置为true，所有路径均转到index.html
         inline:true,//是否实时刷新，即代码有更改，自动刷新浏览器
         stats:{colors:true},//显示bundle文件信息，不同类型的信息用不同的颜色显示
@@ -148,3 +159,7 @@ module.exports = {
         */
     }
 }
+
+
+// 若要启动node js api 的热更新功能，需要修改webpack.config.json 的entry的代码。
+// 注意：在用webpack生成最终的build文件用于生产环境的时候，请先把热更新代码屏蔽掉，否则运行build里面的index.hmtl 时，会一直报错： GET http://localhost:8080/sockjs-node/info?t=1510883222453 net::ERR_CONNECTION_REFUSED msgClose @ client:164 abstract-xhr.js:132。

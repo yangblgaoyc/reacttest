@@ -5,10 +5,11 @@
   "main": "webpack.config.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "webpack --mode development",
-    "build": "webpack --mode production",
-    "start": "webpack -p --config webpack.dll.config.js --progress --profile --colors",
-    "server": "webpack-dev-server --inline --hot"
+    "build-d": "webpack --mode development",
+    "build-p": "webpack --mode production",
+    "build-common": "webpack -p --config webpack.dll.config.js --progress --profile --colors",
+    "server-d": "webpack-dev-server --inline --hot",
+    "server-p":"node server.js"
   },
   "repository": {
     "type": "git",
