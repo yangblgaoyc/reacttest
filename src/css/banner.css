@@ -1,0 +1,10 @@
+#banner{
+    width:100%; padding: 10px;
+    background: #ffffff;
+}
+.banner_swiper{
+    width:100%;height:200px; overflow: hidden;
+}
+.banner_swiper img{
+    width:100%; height: 200px;
+}
