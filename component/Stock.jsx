@@ -7,6 +7,7 @@ class News extends React.Component{
 
     constructor(props){
         super(props);
+        //todo 此处数据将来用redux实现
         this.stock = [
             {
                 name: '上证指数',
@@ -33,13 +34,59 @@ class News extends React.Component{
                 riseorfallexponent:'0.00'
             },
         ];
+
+        this.stock.forEach((item,index)=>{   // this.state.bag是在state里面定义的数组为了循环数据
+            const exponent = item.exponent;
+            const riseorfalldot = item.riseorfalldot;
+            const riseorfallexponent = item.riseorfallexponent;
+
+            this.name = <p className='up'>{item.name}</p>
+
+            if(Math.sign(exponent) == 1) {
+                this.exponentStr = (<p className='up'>{exponent}</p>)
+            }
+            else if(Math.sign(exponent) == -1){
+                this.exponentStr = (<p className='down'>{exponent}</p>)
+            }
+            else{
+                this.exponentStr = (<p>{exponent}</p>)
+            }
+
+            if(Math.sign(riseorfalldot) == 1) {
+                this.riseorfalldotStr = (<span className='up'>{riseorfalldot}</span>)
+            }
+            else if(Math.sign(riseorfalldot) == -1){
+                this.riseorfalldotStr = (<span className='down'>{riseorfalldot}</span>)
+            }
+            else{
+                this.riseorfalldotStr = (<span>{riseorfalldot}</span>)
+            }
+
+            if(Math.sign(riseorfallexponent) == 1) {
+                this.riseorfallexponentStr = (<em className='up'>{riseorfalldot}</em>)
+            }
+            else if(Math.sign(riseorfallexponent) == -1){
+                this.riseorfallexponentStr = (<em className='down'>{riseorfalldot}</em>)
+            }
+            else{
+                this.riseorfallexponentStr = (<em>{riseorfalldot}</em>)
+            }
+
+            this.stock[index] = {
+                name: this.name,
+                exponent: this.exponentStr,
+                riseorfalldot:this.riseorfalldotStr,
+                riseorfallexponent:this.riseorfallexponentStr
+            }
+        })
+
     }
 
-    // componentDidMount(){
-    //     const mySwiper = new Swiper('.swiper-container', {
-    //         slidesPerView : 3
-    //     });
-    // }
+    componentDidMount(){
+        const mySwiper = new Swiper('#stock', {
+            slidesPerView : 3
+        });
+    }
 
     render(){
         return(
@@ -49,9 +96,9 @@ class News extends React.Component{
                         this.stock.map((item,index)=>{   // this.state.bag是在state里面定义的数组为了循环数据
                             return(
                                 <div key={index} className="swiper-slide">
-                                    <p>{item.name}</p>
-                                    <p className={if(Math.sign({item.exponent} == '1')){}
-                                    }>{item.name}</p>
+                                    {item.name}
+                                    {item.exponent}
+                                    <p>{item.riseorfalldot} {item.riseorfallexponent}</p>
                                 </div>
                             )
                         })

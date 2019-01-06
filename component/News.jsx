@@ -1,6 +1,7 @@
 import React from 'react';
 import Return from './ReturnIndex.jsx';
-import Stock from './Stock.jsx'
+import Stock from './Stock.jsx';
+import Category from './Category.jsx'
 
 class News extends React.Component{
 
@@ -13,6 +14,7 @@ class News extends React.Component{
             <div>
                 <Return />
                 <Stock />
+                <Category />
             </div>
         );
     }
