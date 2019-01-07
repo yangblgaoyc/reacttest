@@ -16,6 +16,7 @@ class News extends React.Component{
                 <Return />
                 <Stock />
                 <Category />
+
             </div>
         );
     }

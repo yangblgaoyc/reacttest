@@ -11,3 +11,15 @@
 #category .swiper-slide p{
     color: #333333; font-size: 14px;
 }
+#category_content{
+    width:100%;
+}
+/*#category_content .category_content_li{*/
+    /*display: none;*/
+/*}*/
+#category_content .show{
+    display: block;
+}
+#category_content .hide{
+    display: none;
+}

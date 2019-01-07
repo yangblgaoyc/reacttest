@@ -10,7 +10,7 @@ class ListLi extends React.Component{
 
     render(){
         return(
-            <li>
+            <li className="list_li">
                 <Link to={'/details/'+this.props.data.categoryId+'/'+ this.props.data.id}>
                 {/*<Link to={{pathname:"/details/",query:{categoryId: this.props.data.categoryId, id:this.props.data.id}}}>*/}
                     <img src={this.props.data.img}/>
