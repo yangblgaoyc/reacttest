@@ -1,3 +1,4 @@
+require('../src/css/news.css')
 import React from 'react';
 import Return from './ReturnIndex.jsx';
 import Stock from './Stock.jsx';
@@ -11,7 +12,7 @@ class News extends React.Component{
 
     render(){
         return(
-            <div>
+            <div id="news_container">
                 <Return />
                 <Stock />
                 <Category />

@@ -1,15 +1,17 @@
+require('../src/font/css/font-awesome.css');
 require('../src/css/category.css');
 import React from 'react';
 import Swiper from 'swiper/dist/js/swiper.js';
 import 'swiper/dist/css/swiper.min.css';
 import ImgIconJ20 from '../src/img/icon_j20.jpg';
 import ImgIcon81 from '../src/img/icon_81.jpeg';
-import FontAwesomeIcon from '@fortawesome/react-fontawesome';
 
 class Category extends React.Component{
 
     constructor(props){
         super(props);
+        this.state = {curr:0};
+
         //todo 此处数据将来用redux实现
         this.category = [
             {
@@ -80,9 +82,14 @@ class Category extends React.Component{
 
     }
 
+    handleClick(index) {
+        this.setState({curr: index})
+    }
+
     componentDidMount(){
         const mySwiper = new Swiper('#category', {
-            slidesPerView : 4.5
+            slidesPerView : 4.5,
+            slideToClickedSlide: true,
         });
     }
 
@@ -92,10 +99,12 @@ class Category extends React.Component{
                 <div className='swiper-wrapper'>
                     {
                         this.category.map((item,index)=>{   // this.state.bag是在state里面定义的数组为了循环数据
-                            const className =  item.imgIcon;
+                            const className =  'fa fa-' + item.imgIcon + ' fa-2x';
+                            const swiperSlideStatusOn = 'swiper-slide on';
+                            const swiperSlideStatusNo = 'swiper-slide';
                             return(
-                                <div key={index} className="swiper-slide">
-                                    <FontAwesomeIcon icon={className} />
+                                <div key={index} className={index === this.state.curr ? swiperSlideStatusOn : swiperSlideStatusNo} onClick={this.handleClick.bind(this, index)}>
+                                    <i className={className} />
                                     <p>{item.name}</p>
                                 </div>
                             )

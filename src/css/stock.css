@@ -1,6 +1,7 @@
 #stock,
 #stock .swiper-wrapper{
     width:100%; height: 100px;
+    background: #ffffff;
 }
 #stock .swiper-slide{
     width:33.333%; height: 100px; padding: 10px 0 10px 35px;

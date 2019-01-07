@@ -1,0 +1,13 @@
+#category{
+    background: #ffffff; margin-top: 10px;
+}
+#category .swiper-slide{
+    width:25%;padding: 10px 0;
+    text-align: center; color: #c9c9cd;
+}
+#category .swiper-slide.on{
+    color: #bf9b69;
+}
+#category .swiper-slide p{
+    color: #333333; font-size: 14px;
+}

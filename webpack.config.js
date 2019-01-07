@@ -109,7 +109,7 @@ module.exports = {
 
             },
             {   //配置辅助loader
-                test:/\.(png|jpg|jpeg|gif|svg|eot|ttf|woff|woff2)$/,
+                test:/\.(png|jpg|jpeg|gif)$/,
                 loader:'url-loader',
                 options:{
                     limit:8192,
@@ -118,7 +118,8 @@ module.exports = {
                 }
             },
             { //处理图片外的其他文件类型
-                test:/\.(appcache|svg|eot|ttf|woff|woff2|mp3|pdf)(\?|$)/,
+                test:/\.(appcache|svg|eot|ttf|woff|woff2|mp3|pdf|otf)$/,
+                // test : /\.(ttf|eot|woff|woff2|svg|otf)$/,
                 include:path.resolve(__dirname,'src'),
                 loader:'file-loader',
                 options:{
