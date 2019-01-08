@@ -9,6 +9,8 @@
     "build-p": "webpack --mode production",
     "build-common": "webpack -p --config webpack.dll.config.js --progress --profile --colors",
     "server-d": "webpack-dev-server --inline --hot",
+    "server-pm2": "pm2 start server.js --name uops",
+    "server-pm2-restart": "pm2 restart server.js",
     "server-p": "node server.js"
   },
   "repository": {
@@ -29,9 +31,11 @@
     "@babel/preset-react": "^7.0.0",
     "@babel/preset-stage-0": "^7.0.0",
     "@babel/preset-stage-3": "^7.0.0",
+    "@babel/register": "^7.0.0",
     "autoprefixer": "^9.4.2",
     "babel-eslint": "^10.0.1",
     "babel-loader": "^8.0.4",
+    "babel-plugin-transform-es2015-modules-commonjs": "^6.26.2",
     "clean-webpack-plugin": "^1.0.0",
     "css-loader": "^1.0.1",
     "eslint": "^5.10.0",
@@ -62,9 +66,9 @@
     "webpack-dev-server": "^3.1.10"
   },
   "dependencies": {
+    "express": "^4.16.4",
     "react-router": "^4.3.1",
     "react-router-dom": "^4.3.1",
-    "reactjs-swiper": "^0.1.0",
     "swiper": "^4.4.6"
   }
 }

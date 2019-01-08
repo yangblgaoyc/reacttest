@@ -9,7 +9,13 @@ const server = new webpackDevServer(webpack(config),{
     //compress:true,//gzip压缩
     //headers:{"X-Custom-Foo":"bar"},
     hot:true,//是否启用热更新
-    historyApiFallback:true,//html5接口,设置为true，所有路径均转到index.html
+    // historyApiFallback:true,//html5接口,设置为true，所有路径均转到index.html
+    historyApiFallback : {
+        rewrites: [
+            // shows views/404.html on all other pages
+            { from: /./, to: '/build/infomation.html' },
+        ]
+    },
     inline:true,//是否实时刷新，即代码有更改，自动刷新浏览器
     stats:{colors:true},//显示bundle文件信息，不同类型的信息用不同的颜色显示
     /*
@@ -23,10 +29,26 @@ const server = new webpackDevServer(webpack(config),{
     */
 
 });
-//将其他路由，全部返回index.html
+
 server.app.get('*',function(req,res){
-    res.sendFile(__dirname+'/build/index.html');
+    res.sendFile(__dirname+'/build/infomation.html');
 });
-server.listen(8080,function(){
-    console.log('正常打开8080端口')
-});
+
+
+// const express = require("express");
+// const app = express();
+// const path = require('path');
+//
+// app.get('*', function (req, res) {
+//     res.send(__dirname+'/build/infomation');
+// })
+//
+// var server = app.listen(8080, function () {
+//     // var host = server.address().address
+//     // var port = server.address().port
+//     //
+//     // console.log("应用实例，访问地址为 http://%s:%s", host, port)
+// })
+
+
+

@@ -1,7 +1,7 @@
 require('../src/css/home.css')
 import React from 'react';
 import {NavLink as Link} from 'react-router-dom';
-import Banner from './Banner.jsx'
+const Banner = require('../common_component/Banner.jsx');
 import ColumnTitle from './ColumnTitleIndex.jsx';
 import ListLi from './ListLi.jsx';
 import ImgIconJ20 from '../src/img/icon_j20.jpg';

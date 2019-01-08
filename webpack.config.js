@@ -22,18 +22,23 @@ module.exports = {
     */
 
     entry: {
-        app:[
+        infomation:[
             'webpack-dev-server/client?http://localhost:8080',  // 热更新监听此地址
             'webpack/hot/dev-server',  // 启用热更新
-            './src/app.js',
-            path.resolve(__dirname, 'src', 'app')
+            './src/infomation.js',
+            path.resolve(__dirname, 'src', 'infomation')
+        ],
+        index:[
+            './src/index.js',
+            path.resolve(__dirname, 'src', 'index')
         ]
     },
 
     output: {
-        filename:'bundle.js',//js合并后的输出的文件，命名为bundle.js
+        filename:'[name].js',//js合并后的输出的文件，命名为bundle.js
         path:path.resolve(__dirname,'build/'),//指令的意思是：把合并的js文件，放到根目录build文件夹下面
         // publicPath:'/',//生成文件的公共路径，‘/work/reactweb/dist’ 生产环境下所有的文件路径将会添加这个公共路径
+        // publicPath:'/'
     },
 //多个入口的输出文件格式
     /*
@@ -44,6 +49,10 @@ module.exports = {
     */
 
     plugins : [
+        new HtmlwebpackPlugin({
+            filename: 'infomation.html',
+            template : 'src/infomation.html'
+        }),
         new HtmlwebpackPlugin({
             filename: 'index.html',
             template : 'src/index.html'
@@ -114,7 +123,7 @@ module.exports = {
                 options:{
                     limit:8192,
                     name:"images/[name].[ext]",
-                    publicPath : '../'
+                    // publicPath : '../'
                 }
             },
             { //处理图片外的其他文件类型
@@ -146,7 +155,13 @@ module.exports = {
         open :true,
         hot:true,//是否启用热更新
         port:8080,
-        historyApiFallback:true,//html5接口,设置为true，所有路径均转到index.html
+        // historyApiFallback:true,//html5接口,设置为true，所有路径均转到index.html
+        historyApiFallback : {
+            rewrites: [
+                // shows views/404.html on all other pages
+                { from: /./, to: '/build/infomation.html' },
+            ]
+        },
         inline:true,//是否实时刷新，即代码有更改，自动刷新浏览器
         stats:{colors:true},//显示bundle文件信息，不同类型的信息用不同的颜色显示
         /*
