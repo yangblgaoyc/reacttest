@@ -51,11 +51,13 @@ module.exports = {
     plugins : [
         new HtmlwebpackPlugin({
             filename: 'infomation.html',
-            template : 'src/infomation.html'
+            template : 'src/infomation.html',
+            chunks:['infomation']
         }),
         new HtmlwebpackPlugin({
             filename: 'index.html',
-            template : 'src/index.html'
+            template : 'src/index.html',
+            chunks:['index']
         }),
         // new cleanWebpackPlugin(['build']),
         // new ExtractTextPlugin("styles.css"),   //插件声明

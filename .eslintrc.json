@@ -67,6 +67,8 @@
             "error",
             "always"
         ],
+        "no-console": "off",
+        "no-alert": "error",
         "no-debugger": "error",//不允许用debugger这个关键字
         "no-dupe-args": "error",//不允许函数参数同名
         "no-caller": "error",//不允许用callee等，es6严格模式不支持
