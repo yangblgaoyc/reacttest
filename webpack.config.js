@@ -161,7 +161,8 @@ module.exports = {
         historyApiFallback : {
             rewrites: [
                 // shows views/404.html on all other pages
-                { from: /./, to: '/build/infomation.html' },
+                { from: /index/, to: '/build/index.html'},
+                { from: /infomation/, to: '/build/infomation.html' },
             ]
         },
         inline:true,//是否实时刷新，即代码有更改，自动刷新浏览器
