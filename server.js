@@ -1,41 +1,92 @@
-import webpack from 'webpack';
-import webpackDevServer from 'webpack-dev-server';
-import config from './webpack.config';
+import express from "express";
+const app = express();
+import path from 'path';
+import hbs from 'express-hbs';
+import http from "http";
+import mongoose from 'mongoose';
+// import credentials from './dataCredentials';
+import fs from 'fs';
 
-import React from 'react';
-import { renderToString } from 'react-dom/server';
+// switch(app.get('env')) {
+//     case 'development':
+//         mongoose.connect(credentials.mongo.development.connectionString,{useNewUrlParser:true}, credentials.opts);
+//         break;
+//     case 'production':
+//         mongoose.connect(credentials.mongo.production.connectionString,{useNewUrlParser:true}, credentials.opts);
+//         break;
+//     default:
+//         throw new Error('Unknown execution environment: ' + app.get('env'));
+// }
 
-const server = new webpackDevServer(webpack(config),{
-    hot:true,//是否启用热更新
-    historyApiFallback : {
-        rewrites: [
-            // shows views/404.html on all other pages
-            { from: /index/, to: '/build/index.html' },
-            { from: /infomation/, to: '/build/infomation.html' },
-        ]
-    },
-    inline:true,//是否实时刷新，即代码有更改，自动刷新浏览器
-    stats:{colors:true},//显示bundle文件信息，不同类型的信息用不同的颜色显示
+// 初始化and启用handlebars引擎
+function relative(myPath) {
+    return path.join(__dirname, myPath);
+}
+
+app.engine('hbs', hbs.express4({
+    partialsDir: relative('views/partials'),
+    layoutsDir: relative('views/layouts'),
+    defaultLayout: relative('views/layouts/default.hbs'),
+}));
+app.set('view engine', 'hbs');
+const helpers = require('./helpers');
+helpers.setup(hbs);
+
+// helpers 暂时没用 参考https://www.cnblogs.com/qieguo/p/5811988.html
+
+app.set('views', relative('views'));
+app.set('port',process.env.PORT||8080);
+
+// 设置静态呢文件目录
+app.use(express.static(path.join(__dirname, 'src')));
+app.use(require('body-parser')());
+
+//遍历所有路由文件函数
+function readDirSync(path) {
+    const route = fs.readdirSync(path);
+    route.forEach(function (ele) {
+        const info = fs.statSync(path + "/" + ele)
+        if (info.isDirectory()) {
+            readDirSync(path + "/" + ele);
+        } else {
+            require(path + '/' + ele)(app);
+        }
+    });
+}
+
+//路由引入
+readDirSync('./controller');
+
+//404
+app.use(function(req,res,next){
+    res.status(404);
+    res.render('404');
 });
 
-const ReactApp = (props) => <h1>Hello SSR from 123</h1>;
-
-server.app.get('/index',function(req,res){
-    const ssrDomStr = renderToString(
-        <ReactApp />
-    );
-
-    res.send(html.repalce('<div id="root"></div>', `<div id="root">${ssrDomStr}</div>`));
-    return;
+//500或统一服务器error错误
+app.use(function(err,req,res,next){
+    console.error(err.stack);
+    res.status(500);
+    res.render('500')
 });
 
-// server.app.get('*',function(req,res){
-//     res.sendFile(__dirname+'/build/infomation.html');
-// });
+// 引用集群，防止线程死掉而宕机
+function startServer(){
+    http.createServer(app).listen(app.get('port'),function(){
+        console.log('express started in http://localhost:' + app.get('env') + 'mode on http://localhost: ' + app.get('port') + ';press ctrl-c; to terminate')
+    });
+}
 
-server.listen(8080,function() {
-    console.log('正常打开8080端口')
-});
+if(require.main === module){
+    // 本js应用程序直接运行；启用应用服务器；
+    startServer();
+}
+else {
+    // 应用 程序作为一个模块通过"require"引入：导出函数
+    // 创建服务期
+    module.exports = startServer;
+}
+
 
 
 

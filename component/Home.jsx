@@ -1,7 +1,7 @@
 require('../src/css/home.css')
 import React from 'react';
 import {NavLink as Link} from 'react-router-dom';
-const Banner = require('../common_component/Banner.jsx');
+const Banner = require('../common_component/BannerC.jsx');
 import ColumnTitle from './ColumnTitleIndex.jsx';
 import ListLi from './ListLi.jsx';
 import ImgIconJ20 from '../src/img/icon_j20.jpg';
@@ -57,7 +57,7 @@ class HomeComponent extends React.Component{
     render(){
         return(
             <div id="container">
-                <Banner/>
+                <Banner />
                 <ColumnTitle data={{title:'最新资讯'}}/>
                 <ul>
                     {

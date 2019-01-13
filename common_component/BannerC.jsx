@@ -1,9 +1,9 @@
 require('../src/css/banner.css');
 require('swiper/dist/css/swiper.min.css');
-import React from "react";
-import imgURL1 from '../src/img/j20.jpeg';
-import imgURL2 from'../src/img/j10.jpeg';
-import Swiper  from'swiper/dist/js/swiper.js';
+const React = require("react");
+const imgURL1 = require('../src/img/j20.jpeg');
+const imgURL2 = require('../src/img/j10.jpeg');
+const Swiper = require('swiper/dist/js/swiper.js');
 
 
 class BannerComponent extends React.Component{
