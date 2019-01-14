@@ -33,7 +33,11 @@ class BannerComponent extends React.Component{
         const mySwiper = new Swiper('#banner_swiper', {
             preloadImages: true,
             autoplay: 4000,
-            autoplayDisableOnInteraction: false
+            autoplayDisableOnInteraction: false,
+            // 如果需要分页器
+            pagination: {
+                el: '.swiper-pagination',
+            }
         });
     }
 
@@ -52,6 +56,7 @@ class BannerComponent extends React.Component{
                             })
                         }
                     </div>
+                    <div className="swiper-pagination"></div>
                 </div>
             </div>
 

@@ -37,8 +37,10 @@ helpers.setup(hbs);
 app.set('views', relative('views'));
 app.set('port',process.env.PORT||8080);
 
-// 设置静态呢文件目录
-app.use(express.static(path.join(__dirname, 'src')));
+// 设置静态文件目录
+console.log(__dirname);
+app.use(express.static(path.join(__dirname, 'build')));
+// app.use(express.static(path.join(__dirname)));
 app.use(require('body-parser')());
 
 //遍历所有路由文件函数
@@ -56,6 +58,10 @@ function readDirSync(path) {
 
 //路由引入
 readDirSync('./controller');
+
+app.get('*', function (req, res) {
+    res.sendFile(__dirname+'/build/infomation.html');
+});
 
 //404
 app.use(function(req,res,next){

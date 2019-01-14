@@ -27,15 +27,16 @@ module.exports = {
             'webpack/hot/dev-server',  // 启用热更新
             './src/infomation.js',
             path.resolve(__dirname, 'src', 'infomation')
-        ],
-        index:[
-            './src/index.js',
-            path.resolve(__dirname, 'src', 'index')
         ]
+        // ,
+        // index:[
+        //     './src/index.js',
+        //     path.resolve(__dirname, 'src', 'index')
+        // ]
     },
 
     output: {
-        filename:'[name].js',//js合并后的输出的文件，命名为bundle.js
+        filename:'infomation.js',//js合并后的输出的文件，命名为bundle.js
         path:path.resolve(__dirname,'build/'),//指令的意思是：把合并的js文件，放到根目录build文件夹下面
         // publicPath:'/',//生成文件的公共路径，‘/work/reactweb/dist’ 生产环境下所有的文件路径将会添加这个公共路径
         // publicPath:'/'
@@ -54,11 +55,11 @@ module.exports = {
             template : 'src/infomation.html',
             chunks:['infomation']
         }),
-        new HtmlwebpackPlugin({
-            filename: 'index.html',
-            template : 'src/index.html',
-            chunks:['index']
-        }),
+        // new HtmlwebpackPlugin({
+        //     filename: 'index.html',
+        //     template : 'src/index.html',
+        //     chunks:['index']
+        // }),
         // new cleanWebpackPlugin(['build']),
         // new ExtractTextPlugin("styles.css"),   //插件声明
         new MiniCssExtractPlugin({
@@ -149,7 +150,7 @@ module.exports = {
     },
 
     devServer:{
-        //contentBase: path.join(__dirname,"dist"),//用于静态文件的目录，不设置默认为当前根目录
+        contentBase: path.join(__dirname,"build"),//用于静态文件的目录，不设置默认为当前根目录
         // contentBase:[path.join(__dirname,'public'),path.join(__dirname,'assets')],//支持多路径
         // publicPath:"/assets", 服务器地址:http://localhost:8080 ,output file:http://localhost:8080/assets/bundle.js
         //compress:true,//gzip压缩
@@ -161,8 +162,7 @@ module.exports = {
         historyApiFallback : {
             rewrites: [
                 // shows views/404.html on all other pages
-                { from: /index/, to: '/build/index.html'},
-                { from: /infomation/, to: '/build/infomation.html' },
+                { from: /infomation/, to: '/infomation.html' },
             ]
         },
         inline:true,//是否实时刷新，即代码有更改，自动刷新浏览器

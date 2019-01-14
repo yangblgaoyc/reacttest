@@ -4,18 +4,19 @@
 import Banner from '../common_component/BannerB.jsx';
 import React from 'react';
 import { renderToString } from 'react-dom/server';
-// var ReactApp = (props) => <h1>Hello SSR from </h1>;
+import {NavLink as Link} from 'react-router-dom';
+
 
 
 module.exports = function(app) {
     const data = [
         {
-            image: '/img/j20.jpeg',
+            image: '/images/j20.jpeg',
             title: '图片1',
             // link: 'http://jd.com'
         },
         {
-            image: '/img/j10.jpeg',
+            image: '/images/j10.jpeg',
             title: '图片2',
             // link: 'http://jd.com'
         }
@@ -26,8 +27,8 @@ module.exports = function(app) {
     app.get('/index', function (req, res) {
         res.render('index', {
             "title": "首页",
-            css: ['/css/common.css','/css/banner.css','/swiper/css/swiper.min.css'],
-            js: ['/swiper/js/swiper.js','/ssrjs/index.js'],
+            css: ['/css/styles.css'],
+            js: ['/jsssr/swiper/js/swiper.js','/jsssr/ssrjs/index.js'],
             'message':ssrDomStr,
         });
     });

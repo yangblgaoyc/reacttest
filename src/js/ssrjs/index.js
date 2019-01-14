@@ -5,6 +5,10 @@ window.onload = function(){
     const mySwiper = new Swiper('#banner_swiper', {
         preloadImages: true,
         autoplay: 4000,
-        autoplayDisableOnInteraction: false
+        autoplayDisableOnInteraction: false,
+        // 如果需要分页器
+        pagination: {
+            el: '.swiper-pagination',
+        },
     });
 }
