@@ -1,5 +1,5 @@
 const React = require("react");
-import {BrowserRouter,NavLink as Link} from 'react-router-dom';
+import {StaticRouter,NavLink as Link,HashRouter} from 'react-router-dom';
 
 class BannerComponent extends React.Component{
     constructor(props){
@@ -24,13 +24,13 @@ class BannerComponent extends React.Component{
                             }
                         </div>
                         <div className="swiper-pagination"></div>
-                        {/*https://segmentfault.com/a/1190000014294604*/}
-                        {/*gulp and gulp cli*/}
                     </div>
                 </div>
-                <Link className="ColumnTitleIndexA" to="/news">
-                    <h2 className="ColumnTitleIndex">123</h2>
-                </Link>
+                <StaticRouter >
+                    <Link className="ColumnTitleIndexA" to="/inews">
+                        <h2 className="ColumnTitleIndex">123</h2>
+                    </Link>
+                </StaticRouter>
             </div>
         );
     }

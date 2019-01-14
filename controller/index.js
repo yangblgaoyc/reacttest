@@ -4,7 +4,6 @@
 import Banner from '../common_component/BannerB.jsx';
 import React from 'react';
 import { renderToString } from 'react-dom/server';
-import {NavLink as Link} from 'react-router-dom';
 
 
 

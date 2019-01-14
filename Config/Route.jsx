@@ -1,5 +1,5 @@
 import React from 'react';
-import {Route,Switch,hashHistory}  from 'react-router-dom';
+import {Route,Switch,HashRouter}  from 'react-router-dom';
 // import {NavLink,Route,BrowserRouter as Router,HashRouter,Switch,Redirect}  from 'react-router-dom';
 
 import HomeComponent from '../component/Home.jsx';//引进组件
