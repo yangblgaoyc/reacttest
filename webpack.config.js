@@ -52,7 +52,7 @@ module.exports = {
     plugins : [
         new HtmlwebpackPlugin({
             filename: 'infomation.html',
-            template : 'src/infomation.html',
+            template : 'src/infomation.ejs',
             chunks:['infomation']
         }),
         // new HtmlwebpackPlugin({
@@ -90,6 +90,13 @@ module.exports = {
 
     module:{
         rules:[
+            { test: /\.ejs$/, loader: 'ejs-loader?variable=data' },
+            {
+                test: /\.(html)$/,
+                use: {
+                    loader: 'html-loader',
+                }
+            },
             {
                 test:/\.(js|jsx)$/,
                 // exclude:/(node_modules|bower_components)/,//排除XXX类型文件
