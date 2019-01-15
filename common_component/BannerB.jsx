@@ -27,7 +27,7 @@ class BannerComponent extends React.Component{
                     </div>
                 </div>
                 <StaticRouter >
-                    <Link className="ColumnTitleIndexA" to="/inews">
+                    <Link className="ColumnTitleIndexA" to="/infomation">
                         <h2 className="ColumnTitleIndex">123</h2>
                     </Link>
                 </StaticRouter>

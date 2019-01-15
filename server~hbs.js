@@ -1,15 +1,11 @@
 import express from "express";
 const app = express();
 import path from 'path';
+import hbs from 'express-hbs';
 import http from "http";
-// import mongoose from 'mongoose';
+import mongoose from 'mongoose';
 // import credentials from './dataCredentials';
 import fs from 'fs';
-import ejs from 'ejs';
-
-app.engine('html',ejs.__express);   //使用ejs模板引擎解析html视图文件
-app.set('view engine', 'html');
-app.set('views',path.join(__dirname, 'build'))
 
 // switch(app.get('env')) {
 //     case 'development':
@@ -22,10 +18,29 @@ app.set('views',path.join(__dirname, 'build'))
 //         throw new Error('Unknown execution environment: ' + app.get('env'));
 // }
 
+// 初始化and启用handlebars引擎
+function relative(myPath) {
+    return path.join(__dirname, myPath);
+}
+
+app.engine('hbs', hbs.express4({
+    partialsDir: relative('views/partials'),
+    layoutsDir: relative('views/layouts'),
+    defaultLayout: relative('views/layouts/default.hbs'),
+}));
+app.set('view engine', 'hbs');
+const helpers = require('./helpers');
+helpers.setup(hbs);
+
+// helpers 暂时没用 参考https://www.cnblogs.com/qieguo/p/5811988.html
+
+app.set('views', relative('views'));
 app.set('port',process.env.PORT||8080);
 
 // 设置静态文件目录
+console.log(__dirname);
 app.use(express.static(path.join(__dirname, 'build')));
+// app.use(express.static(path.join(__dirname)));
 app.use(require('body-parser')());
 
 //遍历所有路由文件函数
@@ -44,22 +59,22 @@ function readDirSync(path) {
 //路由引入
 readDirSync('./controller');
 
-// app.get('*', function (req, res) {
-//     res.sendFile(__dirname+'/build/infomation.html');
-// });
+app.get('*', function (req, res) {
+    res.sendFile(__dirname+'/build/infomation.html');
+});
 
 //404
-// app.use(function(req,res,next){
-//     res.status(404);
-//     res.render('404');
-// });
-//
-// //500或统一服务器error错误
-// app.use(function(err,req,res,next){
-//     console.error(err.stack);
-//     res.status(500);
-//     res.render('500')
-// });
+app.use(function(req,res,next){
+    res.status(404);
+    res.render('404');
+});
+
+//500或统一服务器error错误
+app.use(function(err,req,res,next){
+    console.error(err.stack);
+    res.status(500);
+    res.render('500')
+});
 
 // 引用集群，防止线程死掉而宕机
 function startServer(){

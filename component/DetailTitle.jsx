@@ -1,4 +1,3 @@
-require('../src/css/detailTitle.css')
 import React from 'react';
 
 class Detailtitle extends React.Component{

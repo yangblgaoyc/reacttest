@@ -1,22 +1,17 @@
-require('../src/css/banner.css');
-require('swiper/dist/css/swiper.min.css');
 const React = require("react");
-const imgURL1 = require('../src/img/j20.jpeg');
-const imgURL2 = require('../src/img/j10.jpeg');
-const Swiper = require('swiper/dist/js/swiper.js');
-
+import Swiper from 'swiper/dist/js/swiper.js'
 
 class BannerComponent extends React.Component{
     constructor(props){
         super(props);
         this.items = [
             {
-                image: imgURL1,
+                image: "../build/images/j20.jpeg",
                 title: '图片1',
                 // link: 'http://jd.com'
             },
             {
-                image: imgURL2,
+                image: "../build/images/j10.jpeg",
                 title: '图片2',
                 // link: 'http://jd.com'
             }

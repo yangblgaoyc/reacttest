@@ -1,4 +1,3 @@
-require('../src/css/details.css')
 import React from 'react';
 import DetailTitle from './DetailTitle.jsx';
 import DetailContents from './DetailContents.jsx';

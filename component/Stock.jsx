@@ -1,7 +1,5 @@
-require('../src/css/stock.css')
 import React from 'react';
 import Swiper from 'swiper/dist/js/swiper.js'
-import 'swiper/dist/css/swiper.min.css'
 
 class News extends React.Component{
 

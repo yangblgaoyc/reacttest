@@ -1,4 +1,3 @@
-require('../src/css/news.css')
 import React from 'react';
 import Return from './ReturnIndex.jsx';
 import Stock from './Stock.jsx';
