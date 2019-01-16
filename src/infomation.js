@@ -13,9 +13,11 @@ require('swiper/dist/css/swiper.min.css');
 require('../src/css/banner.css');
 require('../src/img/icon_j20.jpg');
 require('../src/img/icon_81.jpeg');
-require('../src/img/icon_arrow_o.png');
 require('../src/img/j20.jpeg');
 require('../src/img/j10.jpeg');
+require('../src/img/arrow.png');
+require('../src/img/ball.png');
+
 
 import React from 'react';
 import ReactDOM from 'react-dom';

@@ -6,12 +6,12 @@ class BannerComponent extends React.Component{
         super(props);
         this.items = [
             {
-                image: "../build/images/j20.jpeg",
+                image: "images/j20.jpeg",
                 title: '图片1',
                 // link: 'http://jd.com'
             },
             {
-                image: "../build/images/j10.jpeg",
+                image: "images/j10.jpeg",
                 title: '图片2',
                 // link: 'http://jd.com'
             }

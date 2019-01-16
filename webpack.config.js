@@ -1,6 +1,6 @@
 const webpack = require('webpack');
 const path = require('path');
-const HtmlwebpackPlugin = require('html-webpack-plugin');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
 // const cleanWebpackPlugin = require('clean-webpack-plugin');
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 // const ExtractTextPlugin = require('extract-text-webpack-plugin');
@@ -50,7 +50,8 @@ module.exports = {
     */
 
     plugins : [
-        new HtmlwebpackPlugin({
+        new HtmlWebpackPlugin({
+            title:'<%- component %>',
             filename: 'infomation.html',
             template : 'src/infomation.ejs',
             chunks:['infomation']
@@ -90,13 +91,6 @@ module.exports = {
 
     module:{
         rules:[
-            { test: /\.ejs$/, loader: 'ejs-loader?variable=data' },
-            {
-                test: /\.(html)$/,
-                use: {
-                    loader: 'html-loader',
-                }
-            },
             {
                 test:/\.(js|jsx)$/,
                 // exclude:/(node_modules|bower_components)/,//排除XXX类型文件

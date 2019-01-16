@@ -9,7 +9,7 @@ class HomeComponent extends React.Component{
         //todo 有数据后将下列数据替换
         this.list = [
             {
-                'img':"../build/images/icon_j20.jpg",
+                'img':"images/icon_j20.jpg",
                 'title':'漂亮的歼20',
                 'category':'军事--空军',
                 'times':'50',
@@ -17,7 +17,7 @@ class HomeComponent extends React.Component{
                 'id':'1'
             },
             {
-                'img':"../build/images/icon_81.jpeg",
+                'img':"images/icon_81.jpeg",
                 'title':'八一图标',
                 'category':'军事--中国军队',
                 'times':'20',
@@ -25,7 +25,7 @@ class HomeComponent extends React.Component{
                 'id':'1'
             },
             {
-                'img':"../build/images/icon_j20.jpg",
+                'img':"images/icon_j20.jpg",
                 'title':'漂亮的歼20',
                 'category':'军事--空军',
                 'times':'50',
@@ -33,7 +33,7 @@ class HomeComponent extends React.Component{
                 'id':'1'
             },
             {
-                'img':"../build/images/icon_81.jpeg",
+                'img':"images/icon_81.jpeg",
                 'title':'八一图标',
                 'category':'军事--中国军队',
                 'times':'20',
@@ -41,7 +41,7 @@ class HomeComponent extends React.Component{
                 'id':'1'
             },
             {
-                'img':"../build/images/icon_j20.jpg",
+                'img':"images/icon_j20.jpg",
                 'title':'漂亮的歼20',
                 'category':'军事--空军',
                 'times':'50',
@@ -49,7 +49,7 @@ class HomeComponent extends React.Component{
                 'id':'1'
             },
             {
-                'img':"../build/images/icon_81.jpeg",
+                'img':"images/icon_81.jpeg",
                 'title':'八一图标',
                 'category':'军事--中国军队',
                 'times':'20',
