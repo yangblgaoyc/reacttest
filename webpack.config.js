@@ -8,6 +8,15 @@ const os = require('os');//os.cpus().Length 一般会取不到值，这里直接
 const HappyPack = require('happypack');
 // const happypackThreadPool = Happypack.ThreadPool({size:4});//size:os.cpus().Lengt根据电脑的idle，配置当前最大的线程数量
 const happypackThreadPool = HappyPack.ThreadPool({ size: os.cpus().length });
+function recursiveIssuer(m) {
+    if (m.issuer) {
+        return recursiveIssuer(m.issuer);
+    } else if (m.name) {
+        return m.name;
+    } else {
+        return false;
+    }
+}
 
 module.exports = {
 
@@ -26,17 +35,18 @@ module.exports = {
             'webpack-dev-server/client?http://localhost:8080',  // 热更新监听此地址
             'webpack/hot/dev-server',  // 启用热更新
             './src/infomation.js',
+            './src/js/ssrjs/index.js',
             path.resolve(__dirname, 'src', 'infomation')
         ]
-        // ,
-        // index:[
-        //     './src/index.js',
-        //     path.resolve(__dirname, 'src', 'index')
-        // ]
+        ,
+        index:[
+            './src/index.js',
+            path.resolve(__dirname, 'src', 'index')
+        ]
     },
 
     output: {
-        filename:'infomation.js',//js合并后的输出的文件，命名为bundle.js
+        filename:'[name].js',//js合并后的输出的文件，命名为bundle.js
         path:path.resolve(__dirname,'build/'),//指令的意思是：把合并的js文件，放到根目录build文件夹下面
         // publicPath:'/',//生成文件的公共路径，‘/work/reactweb/dist’ 生产环境下所有的文件路径将会添加这个公共路径
         // publicPath:'/'
@@ -48,23 +58,40 @@ module.exports = {
         path:path.resolve(__dirname,'build'),//
     }
     */
-
+    optimization: {
+        splitChunks: {
+            cacheGroups: {
+                infomation: {
+                    name: 'infomation',
+                    test: (m,c,entry = 'infomation') => m.constructor.name === 'CssModule' && recursiveIssuer(m) === entry,
+                    chunks: 'all',
+                    enforce: true
+                },
+                index: {
+                    name: 'index',
+                    test: (m,c,entry = 'index') => m.constructor.name === 'CssModule' && recursiveIssuer(m) === entry,
+                    chunks: 'all',
+                    enforce: true
+                }
+            }
+        }
+    },
     plugins : [
         new HtmlWebpackPlugin({
-            title:'<%- component %>',
             filename: 'infomation.html',
             template : 'src/infomation.ejs',
             chunks:['infomation']
         }),
-        // new HtmlwebpackPlugin({
-        //     filename: 'index.html',
-        //     template : 'src/index.html',
-        //     chunks:['index']
-        // }),
+        new HtmlWebpackPlugin({
+            title:'<%- component %>',
+            filename: 'index.html',
+            template : 'src/index.ejs',
+            chunks:['index']
+        }),
         // new cleanWebpackPlugin(['build']),
         // new ExtractTextPlugin("styles.css"),   //插件声明
         new MiniCssExtractPlugin({
-            filename: 'css/styles.css',
+            filename: 'css/[name].css',
         }),
         require('autoprefixer'),
         // new webpack.optimize.UglifyJsPlugin(

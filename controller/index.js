@@ -5,6 +5,7 @@ import React from "react";
 import {StaticRouter as Router} from 'react-router-dom';
 import RouteConfig from '../Config/RouteNode';
 import { renderToString } from 'react-dom/server';
+import Banner from '../component/Banner';
 
 
 module.exports = function(app) {
@@ -13,7 +14,14 @@ module.exports = function(app) {
             {RouteConfig}
         </Router>
     );
+    const banner = renderToString(
+        <Banner/>
+    );
     app.get('/index', function (req, res) {
-        res.render('infomation', {component:html});
+        res.render('index', {component:html});
+    });
+
+    app.get('*', function (req, res) {
+        res.render('infomation', {component:banner});
     });
 }
