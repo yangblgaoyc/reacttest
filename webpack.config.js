@@ -35,12 +35,12 @@ module.exports = {
             'webpack-dev-server/client?http://localhost:8080',  // 热更新监听此地址
             'webpack/hot/dev-server',  // 启用热更新
             './src/infomation.js',
-            './src/js/ssrjs/index.js',
             path.resolve(__dirname, 'src', 'infomation')
         ]
         ,
         index:[
             './src/index.js',
+            // './src/js/ssrjs/index.js',
             path.resolve(__dirname, 'src', 'index')
         ]
     },
@@ -58,24 +58,24 @@ module.exports = {
         path:path.resolve(__dirname,'build'),//
     }
     */
-    optimization: {
-        splitChunks: {
-            cacheGroups: {
-                infomation: {
-                    name: 'infomation',
-                    test: (m,c,entry = 'infomation') => m.constructor.name === 'CssModule' && recursiveIssuer(m) === entry,
-                    chunks: 'all',
-                    enforce: true
-                },
-                index: {
-                    name: 'index',
-                    test: (m,c,entry = 'index') => m.constructor.name === 'CssModule' && recursiveIssuer(m) === entry,
-                    chunks: 'all',
-                    enforce: true
-                }
-            }
-        }
-    },
+    // optimization: {
+    //     splitChunks: {
+    //         cacheGroups: {
+    //             infomation: {
+    //                 name: 'infomation',
+    //                 test: (m,c,entry = 'infomation') => m.constructor.name === 'CssModule' && recursiveIssuer(m) === entry,
+    //                 chunks: 'all',
+    //                 enforce: true
+    //             },
+    //             index: {
+    //                 name: 'index',
+    //                 test: (m,c,entry = 'index') => m.constructor.name === 'CssModule' && recursiveIssuer(m) === entry,
+    //                 chunks: 'all',
+    //                 enforce: true
+    //             }
+    //         }
+    //     }
+    // },
     plugins : [
         new HtmlWebpackPlugin({
             filename: 'infomation.html',
@@ -92,6 +92,7 @@ module.exports = {
         // new ExtractTextPlugin("styles.css"),   //插件声明
         new MiniCssExtractPlugin({
             filename: 'css/[name].css',
+            chunkFilename: "[id].css"
         }),
         require('autoprefixer'),
         // new webpack.optimize.UglifyJsPlugin(

@@ -44,6 +44,9 @@ function readDirSync(path) {
 //路由引入
 readDirSync('./controller');
 
+app.get('*', function (req, res) {
+    res.sendFile(__dirname+'/build/infomation.html');
+});
 // app.get('*', function (req, res) {
 //     res.sendFile(__dirname+'/build/infomation.html');
 // });
