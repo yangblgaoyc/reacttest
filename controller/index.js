@@ -26,6 +26,7 @@ module.exports = function(app) {
         const ssrDomStr = renderToString(
             <div>
                 <Banner data={{data:data}}  />
+                <Router location={req.url}><ColumnTitle data={{title:'最新资讯'}}/></Router>
             </div>
         );
         res.render('index', {

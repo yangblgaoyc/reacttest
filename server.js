@@ -6,6 +6,11 @@ import http from "http";
 import mongoose from 'mongoose';
 // import credentials from './dataCredentials';
 import fs from 'fs';
+import React from 'react';
+import {StaticRouter as Router} from 'react-router-dom';
+import { renderToString } from 'react-dom/server';
+import RouteConfig from './Config/Route.jsx';
+import News from './component/News';
 
 // switch(app.get('env')) {
 //     case 'development':
@@ -60,7 +65,14 @@ function readDirSync(path) {
 readDirSync('./controller');
 
 app.get('*', function (req, res) {
-    res.sendFile(__dirname+'/build/infomation.html');
+    console.log(req.url)
+    const ssrDomStr = renderToString(
+            <Router location={req.url}>
+                {/*{RouteConfig}*/}
+            </Router>
+    );
+    res.write(ssrDomStr);
+    // res.sendFile(__dirname+'/build/infomation.html');
 });
 
 //404
