@@ -16,12 +16,10 @@ class BannerComponent extends React.Component{
                 // link: 'http://jd.com'
             }
         ];
+    }
 
-        this.swiperOptions = {
-            preloadImages: true,
-            autoplay: 4000,
-            autoplayDisableOnInteraction: false
-        };
+    handleClick() {
+        console.log(1)
     }
 
     componentDidMount(){

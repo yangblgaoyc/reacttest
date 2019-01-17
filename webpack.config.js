@@ -17,7 +17,6 @@ function recursiveIssuer(m) {
         return false;
     }
 }
-
 module.exports = {
 
     // entry:'./src/app.js', //入口文件配置为app.js文件。若入口文件为index.js,这里可以直接写成'./src'
@@ -31,18 +30,20 @@ module.exports = {
     */
 
     entry: {
-        infomation:[
-            'webpack-dev-server/client?http://localhost:8080',  // 热更新监听此地址
-            'webpack/hot/dev-server',  // 启用热更新
-            './src/infomation.js',
-            path.resolve(__dirname, 'src', 'infomation')
-        ]
-        ,
-        index:[
-            './src/index.js',
-            // './src/js/ssrjs/index.js',
-            path.resolve(__dirname, 'src', 'index')
-        ]
+        infomation:'./src/infomation.js',
+        index:['./src/js/swiper/js/swiper.js','./src/js/ssrjs/index.js'],
+        // infomation:[
+        //     'webpack-dev-server/client?http://localhost:8080',  // 热更新监听此地址
+        //     'webpack/hot/dev-server',  // 启用热更新
+        //     './src/infomation.js',
+        //     path.resolve(__dirname, 'src', 'infomation')
+        // ]
+        // ,
+        // index:[
+        //     './src/index.js',
+        //     // './src/js/ssrjs/index.js',
+        //     path.resolve(__dirname, 'src', 'index')
+        // ]
     },
 
     output: {
@@ -58,24 +59,7 @@ module.exports = {
         path:path.resolve(__dirname,'build'),//
     }
     */
-    // optimization: {
-    //     splitChunks: {
-    //         cacheGroups: {
-    //             infomation: {
-    //                 name: 'infomation',
-    //                 test: (m,c,entry = 'infomation') => m.constructor.name === 'CssModule' && recursiveIssuer(m) === entry,
-    //                 chunks: 'all',
-    //                 enforce: true
-    //             },
-    //             index: {
-    //                 name: 'index',
-    //                 test: (m,c,entry = 'index') => m.constructor.name === 'CssModule' && recursiveIssuer(m) === entry,
-    //                 chunks: 'all',
-    //                 enforce: true
-    //             }
-    //         }
-    //     }
-    // },
+
     plugins : [
         new HtmlWebpackPlugin({
             filename: 'infomation.html',
@@ -181,7 +165,7 @@ module.exports = {
     devServer:{
         contentBase: path.join(__dirname,"build"),//用于静态文件的目录，不设置默认为当前根目录
         // contentBase:[path.join(__dirname,'public'),path.join(__dirname,'assets')],//支持多路径
-        // publicPath:"/assets", 服务器地址:http://localhost:8080 ,output file:http://localhost:8080/assets/bundle.js
+        // publicPath:path.resolve(__dirname,'build'), //服务器地址:http://localhost:8080 ,output file:http://localhost:8080/assets/bundle.js
         //compress:true,//gzip压缩
         //headers:{"X-Custom-Foo":"bar"},
         open :true,

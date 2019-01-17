@@ -75,6 +75,7 @@
         "no-unmodified-loop-condition": "error",
         "no-with": "error",//不允许用with来声明
         "no-catch-shadow": "error",
-        "no-unused-vars": 0
+        "no-unused-vars": 0,
+        "no-undef":0
     }
 }

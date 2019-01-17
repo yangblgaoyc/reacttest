@@ -7,7 +7,6 @@ import RouteConfig from '../Config/RouteNode';
 import { renderToString } from 'react-dom/server';
 import Banner from '../component/Banner';
 import ColumnTitle from '../component/ColumnTitleIndex';
-import path from 'path';
 
 
 module.exports = function(app,sendFilePath) {
@@ -16,13 +15,15 @@ module.exports = function(app,sendFilePath) {
             {RouteConfig}
         </Router>
     );
-    const banner = renderToString(
-        <div>
-            <Banner/>
-            <Router><ColumnTitle data={{title:'最新资讯'}}/></Router>
-        </div>
-    );
+
     app.get('/index', function (req, res) {
+        const context = {};
+        const banner = renderToString(
+            <div>
+                <Banner/>
+                <Router location={req.url} context={context}><ColumnTitle data={{title:'最新资讯'}}/></Router>
+            </div>
+        );
         res.render('index', {component:banner});
     });
 }

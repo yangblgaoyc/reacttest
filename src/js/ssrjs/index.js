@@ -11,4 +11,4 @@ window.onload = function(){
             el: '.swiper-pagination',
         },
     });
-}
+};
