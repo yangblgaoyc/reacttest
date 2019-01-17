@@ -1,29 +1,38 @@
 /**
  * Created by yangbolun on 2019/1/11.
  */
-import React from "react";
-import {StaticRouter as Router} from 'react-router-dom';
-import RouteConfig from '../Config/RouteNode';
-import { renderToString } from 'react-dom/server';
-import Banner from '../component/Banner';
+import Banner from '../component/Banner.jsx';
 import ColumnTitle from '../component/ColumnTitleIndex';
+import React from 'react';
+import {StaticRouter as Router} from 'react-router-dom';
+import { renderToString } from 'react-dom/server';
 
 
-module.exports = function(app,sendFilePath) {
-    const html = renderToString(
-        <Router>
-            {RouteConfig}
-        </Router>
-    );
 
+module.exports = function(app) {
+    const data = [
+        {
+            image: '/images/j20.jpeg',
+            title: '图片1',
+            // link: 'http://jd.com'
+        },
+        {
+            image: '/images/j10.jpeg',
+            title: '图片2',
+            // link: 'http://jd.com'
+        }
+    ];
     app.get('/index', function (req, res) {
-        const context = {};
-        const banner = renderToString(
+        const ssrDomStr = renderToString(
             <div>
-                <Banner/>
-                <Router location={req.url} context={context}><ColumnTitle data={{title:'最新资讯'}}/></Router>
+                <Banner data={{data:data}}  />
             </div>
         );
-        res.render('index', {component:banner});
+        res.render('index', {
+            "title": "首页",
+            css: ['/css/infomation.css'],
+            js: ['/jsssr/swiper/js/swiper.js','/jsssr/ssrjs/index.js'],
+            'message':ssrDomStr,
+        });
     });
 }

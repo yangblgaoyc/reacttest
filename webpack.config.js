@@ -31,7 +31,6 @@ module.exports = {
 
     entry: {
         infomation:'./src/infomation.js',
-        index:['./src/js/swiper/js/swiper.js','./src/js/ssrjs/index.js'],
         // infomation:[
         //     'webpack-dev-server/client?http://localhost:8080',  // 热更新监听此地址
         //     'webpack/hot/dev-server',  // 启用热更新
@@ -63,14 +62,8 @@ module.exports = {
     plugins : [
         new HtmlWebpackPlugin({
             filename: 'infomation.html',
-            template : 'src/infomation.ejs',
+            template : 'src/infomation.html',
             chunks:['infomation']
-        }),
-        new HtmlWebpackPlugin({
-            title:'<%- component %>',
-            filename: 'index.html',
-            template : 'src/index.ejs',
-            chunks:['index']
         }),
         // new cleanWebpackPlugin(['build']),
         // new ExtractTextPlugin("styles.css"),   //插件声明
