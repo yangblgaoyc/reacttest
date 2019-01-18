@@ -10,6 +10,7 @@ require('../src/img/j20.jpeg');
 require('../src/img/j10.jpeg');
 require('../src/img/arrow.png');
 require('../src/img/ball.png');
+require('../src/img/react_d.jpg');
 
 import Swiper from 'swiper/dist/js/swiper.js';
 

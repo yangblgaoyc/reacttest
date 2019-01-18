@@ -8,8 +8,7 @@ require('../src/styles/particles/detailContents.css');
 class Detail extends React.Component{
     constructor(props){
         super(props);
-        // console.log(this.props.location.query);
-        console.log(this.props.match.params);
+        console.log(this.props.location.state);
         this.data = {
             titleContents:{
                 title:'测试暂存',

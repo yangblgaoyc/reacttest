@@ -53,8 +53,8 @@ app.get('*', function (req, res) {
 //     res.status(404);
 //     res.render('404');
 // });
-//
-// //500或统一服务器error错误
+
+//500或统一服务器error错误
 // app.use(function(err,req,res,next){
 //     console.error(err.stack);
 //     res.status(500);
