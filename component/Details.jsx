@@ -1,6 +1,9 @@
 import React from 'react';
-import DetailTitle from './DetailTitle.jsx';
-import DetailContents from './DetailContents.jsx';
+import DetailTitle from './particles/DetailTitle.jsx';
+import DetailContents from './particles/DetailContents.jsx';
+require('../src/styles/details.css');
+require('../src/styles/particles/detailTitle.css');
+require('../src/styles/particles/detailContents.css');
 
 class Detail extends React.Component{
     constructor(props){

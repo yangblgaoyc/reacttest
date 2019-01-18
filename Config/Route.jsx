@@ -9,7 +9,7 @@ import Detail from '../component/Details.jsx';//引进组件
 // var data = {id:3,name:'sam',age:36};
 const routes =[
     {
-        path:'/',
+        path:'/home',
         exact:true,
         // component: MainComponent
         // render:()=>(<HomeComponent data={data}/>)

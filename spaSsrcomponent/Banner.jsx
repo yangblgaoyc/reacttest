@@ -18,9 +18,6 @@ class BannerComponent extends React.Component{
         ];
     }
 
-    handleClick() {
-        console.log(1)
-    }
 
     componentDidMount(){
         const mySwiper = new Swiper('#banner_swiper', {

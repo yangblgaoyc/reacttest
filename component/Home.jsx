@@ -1,7 +1,13 @@
 import React from 'react';
-const Banner = require('./Banner.jsx');
-import ColumnTitle from './ColumnTitleIndex.jsx';
-import ListLi from './ListLi.jsx';
+import Banner from '../spaSsrcomponent/Banner.jsx';
+import ColumnTitle from '../spaSsrcomponent/ColumnTitleIndex.jsx';
+import ListLi from './particles/ListLi.jsx';
+require('../src/styles/home.css');
+require('../src/styles/particles/columnTitleIndex.css');
+require('../src/styles/particles/listli.css');
+require('../src/styles/particles/banner.css');
+require('swiper/dist/css/swiper.min.css');
+
 // import {NavLink,Route,BrowserRouter as Router,HashRouter,Switch,Redirect}  from 'react-router-dom';
 class HomeComponent extends React.Component{
     constructor(props){
@@ -62,7 +68,7 @@ class HomeComponent extends React.Component{
         return(
             <div id="container">
                 <Banner />
-                <ColumnTitle data={{title:'最新资讯'}}/>
+                <ColumnTitle data={{title:'最新资讯',url:'/news'}}/>
                 <ul>
                     {
                         this.list.map(item => <ListLi data={item}></ListLi>)

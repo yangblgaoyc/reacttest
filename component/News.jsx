@@ -1,7 +1,12 @@
 import React from 'react';
-import Return from './ReturnIndex.jsx';
-import Stock from './Stock.jsx';
-import Category from './Category.jsx'
+import Return from './particles/ReturnIndex.jsx';
+import Stock from './particles/Stock.jsx';
+import Category from './particles/Category.jsx'
+require('../src/styles/news.css');
+require('../src/styles/particles/category.css');
+require('../src/styles/particles/return.css');
+require('../src/styles/particles/stock.css');
+require('../src/font/css/font-awesome.css');
 
 class News extends React.Component{
 

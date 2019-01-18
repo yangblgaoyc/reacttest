@@ -1,12 +1,11 @@
 /**
  * Created by yangbolun on 2019/1/11.
  */
-import Banner from '../component/Banner.jsx';
-import ColumnTitle from '../component/ColumnTitleIndex';
-import React from 'react';
+import React from "react";
 import {StaticRouter as Router} from 'react-router-dom';
 import { renderToString } from 'react-dom/server';
-
+import Banner from '../spaSsrcomponent/Banner.jsx';
+import ColumnTitle from '../spaSsrcomponent/ColumnTitleIndex.jsx';
 
 
 module.exports = function(app) {
@@ -26,14 +25,11 @@ module.exports = function(app) {
         const ssrDomStr = renderToString(
             <div>
                 <Banner data={{data:data}}  />
-                <Router location={req.url}><ColumnTitle data={{title:'最新资讯'}}/></Router>
+                <Router location={req.url}>
+                    <ColumnTitle data={{title:'最新资讯',url:'/news'}}/>
+                </Router>
             </div>
         );
-        res.render('index', {
-            "title": "首页",
-            css: ['/css/infomation.css'],
-            js: ['/jsssr/swiper/js/swiper.js','/jsssr/ssrjs/index.js'],
-            'message':ssrDomStr,
-        });
+        res.render('index', {component:ssrDomStr});
     });
-}
+};

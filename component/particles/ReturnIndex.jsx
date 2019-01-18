@@ -10,7 +10,7 @@ class BannerComponent extends React.Component{
 
     render(){
         return(
-            <Link id="return" to="/">
+            <Link id="return" to="/home">
                     <img src={arrowImage} alt=""/> 返回首页
             </Link>
         );

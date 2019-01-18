@@ -30,12 +30,13 @@ module.exports = {
     */
 
     entry: {
-        infomation:'./src/infomation.js',
-        // infomation:[
+        home:'./src/home.js',
+        index:'./src/index.js'
+        // home:[
         //     'webpack-dev-server/client?http://localhost:8080',  // 热更新监听此地址
         //     'webpack/hot/dev-server',  // 启用热更新
-        //     './src/infomation.js',
-        //     path.resolve(__dirname, 'src', 'infomation')
+        //     './src/home.js',
+        //     path.resolve(__dirname, 'src', 'home')
         // ]
         // ,
         // index:[
@@ -45,30 +46,29 @@ module.exports = {
         // ]
     },
 
+    //多个入口的输出文件格式
     output: {
         filename:'[name].js',//js合并后的输出的文件，命名为bundle.js
         path:path.resolve(__dirname,'build/'),//指令的意思是：把合并的js文件，放到根目录build文件夹下面
         // publicPath:'/',//生成文件的公共路径，‘/work/reactweb/dist’ 生产环境下所有的文件路径将会添加这个公共路径
         // publicPath:'/'
     },
-//多个入口的输出文件格式
-    /*
-    output: {
-        filename:'[name].js',//name相当于变量，等同于pageOne/pageTwo/pageThree
-        path:path.resolve(__dirname,'build'),//
-    }
-    */
-
     plugins : [
         new HtmlWebpackPlugin({
-            filename: 'infomation.html',
-            template : 'src/infomation.html',
-            chunks:['infomation']
+            filename: 'home.html',
+            template : 'src/home.ejs',
+            chunks:['home']
+        }),
+        new HtmlWebpackPlugin({
+            title:'<%- component %>',
+            filename: 'index.html',
+            template : 'src/index.ejs',
+            chunks:['index']
         }),
         // new cleanWebpackPlugin(['build']),
         // new ExtractTextPlugin("styles.css"),   //插件声明
         new MiniCssExtractPlugin({
-            filename: 'css/[name].css',
+            filename: 'styles/[name].css',
             chunkFilename: "[id].css"
         }),
         require('autoprefixer'),
@@ -168,7 +168,7 @@ module.exports = {
         historyApiFallback : {
             rewrites: [
                 // shows views/404.html on all other pages
-                { from: /infomation/, to: '/infomation.html' },
+                { from: /home/, to: '/home.html' },
             ]
         },
         inline:true,//是否实时刷新，即代码有更改，自动刷新浏览器

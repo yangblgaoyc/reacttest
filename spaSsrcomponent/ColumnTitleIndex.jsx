@@ -10,7 +10,7 @@ class columnTitleIndexComponent extends React.Component{
 
     render(){
         return(
-            <Link className="ColumnTitleIndexA" to="/news">
+            <Link className="ColumnTitleIndexA" to={this.props.data.url}>
                 <h2 className="ColumnTitleIndex">{this.props.data.title} <img src={arrowImg} alt=""/></h2>
             </Link>
         );
