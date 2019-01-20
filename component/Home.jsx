@@ -14,11 +14,6 @@ require('swiper/dist/css/swiper.min.css');
 class HomeComponent extends React.Component{
     constructor(props){
         super(props);
-        // this.state = {
-        //     count: 0
-        // };
-        // this
-        // this.listener = this.listener.bind(this);
         //todo 有数据后将下列数据替换
         this.list = [
             {
@@ -74,21 +69,6 @@ class HomeComponent extends React.Component{
     componentDidMount (){
         console.log(this.props)
     }
-    // listener (){
-    //     var counts = store.getState().reads.info.count;
-    //     console.log(counts,this.setState);
-    //     this.setState({count:100}, ()=>{
-    //
-    //         console.log(this.state.count);
-    //     })
-    //     if(!!counts){
-    //         this.setState({count:counts})
-    //     }
-    //     else{
-    //         this.setState({count:counts})
-    //     }
-    //     console.log(!!counts,counts,this.state)
-    // }
 
     render(){
         return(
