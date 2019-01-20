@@ -10,11 +10,15 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import {BrowserRouter as Router} from 'react-router-dom';
 import RouteConfig from '../Config/Route.jsx';
+import {store} from '../clientModel/index';
+import { Provider } from 'react-redux';//引进组件
 
 ReactDOM.render(
-    <Router>
-        {RouteConfig}
-    </Router>
+    <Provider store = {store}>
+        <Router>
+            {RouteConfig}
+        </Router>
+    </Provider>
     ,document.getElementById('root')
 );
 

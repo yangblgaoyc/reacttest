@@ -8,6 +8,7 @@ require('../src/styles/particles/detailContents.css');
 class Detail extends React.Component{
     constructor(props){
         super(props);
+        console.log(this.props);
         console.log(this.props.location.state);
         this.data = {
             titleContents:{

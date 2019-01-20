@@ -1,14 +1,20 @@
 import React from 'react';
 import {NavLink as Link} from 'react-router-dom';
-
+import { createStore } from 'redux';
+import {store} from '../../clientModel/index';
 class ListLi extends React.Component{
 
     constructor(props){
         super(props);
+        this.listClick = this.listClick.bind(this);
+    }
+    listClick (){
+        store.dispatch({type:'ADD_TO_READS'});
+        // console.log(store.getState());
     }
     render(){
         return(
-            <li className="list_li">
+            <li className="list_li" onClick={this.listClick}>
                 {/*<Link to={'/details/'+this.props.data.categoryId+'/'+ this.props.data.id}>*/}
                 {/*这里传参不能用restful api风格，否则去到的页面刷新后js路径有问题，导致无法获取参数*/}
                 {/*这里传参不能用参数query的写法，否则去到的页面刷新后js loaction对象的query值将丢失*/}

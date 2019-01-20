@@ -2,16 +2,23 @@ import React from 'react';
 import Banner from '../spaSsrcomponent/Banner.jsx';
 import ColumnTitle from '../spaSsrcomponent/ColumnTitleIndex.jsx';
 import ListLi from './particles/ListLi.jsx';
+import { connect } from 'react-redux';//引进组件
+// import {store} from '../clientModel/index';
+
 require('../src/styles/home.css');
 require('../src/styles/particles/columnTitleIndex.css');
 require('../src/styles/particles/listli.css');
 require('../src/styles/particles/banner.css');
 require('swiper/dist/css/swiper.min.css');
-
 // import {NavLink,Route,BrowserRouter as Router,HashRouter,Switch,Redirect}  from 'react-router-dom';
 class HomeComponent extends React.Component{
     constructor(props){
         super(props);
+        // this.state = {
+        //     count: 0
+        // };
+        // this
+        // this.listener = this.listener.bind(this);
         //todo 有数据后将下列数据替换
         this.list = [
             {
@@ -64,10 +71,30 @@ class HomeComponent extends React.Component{
             },
         ]
     }
+    componentDidMount (){
+        console.log(this.props)
+    }
+    // listener (){
+    //     var counts = store.getState().reads.info.count;
+    //     console.log(counts,this.setState);
+    //     this.setState({count:100}, ()=>{
+    //
+    //         console.log(this.state.count);
+    //     })
+    //     if(!!counts){
+    //         this.setState({count:counts})
+    //     }
+    //     else{
+    //         this.setState({count:counts})
+    //     }
+    //     console.log(!!counts,counts,this.state)
+    // }
+
     render(){
         return(
             <div id="container">
                 <Banner />
+                <marquee behavior="alternate">你本次访问已在本站阅读了<span> {this.props.reads} </span>篇文章。</marquee>
                 <ColumnTitle data={{title:'最新资讯',url:'/news'}}/>
                 <ul>
                     {
@@ -78,5 +105,8 @@ class HomeComponent extends React.Component{
         )
     }
 }
-
-export default HomeComponent;
+const mapStateToProps =  (state,ownProps) => ({
+    reads:state.reads.info.count
+})
+const mapDispatchToProps = {}
+export default connect(mapStateToProps,mapDispatchToProps)(HomeComponent);
