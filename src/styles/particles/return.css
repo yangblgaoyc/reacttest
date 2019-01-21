@@ -4,6 +4,9 @@
     color:#BF9B69;border-bottom: 1px solid #E2E1E6;
 
 }
+#return span{
+    float: right; color: #999999;
+}
 #return img{
     transform:rotate(180deg); height: 12px;
 }

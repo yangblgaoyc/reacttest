@@ -1,5 +1,5 @@
 import React from 'react';
-import Return from './particles/ReturnIndex.jsx';
+import Return from './particles/highOrderC.jsx';
 import Stock from './particles/Stock.jsx';
 import Category from './particles/Category.jsx'
 require('../src/styles/news.css');
